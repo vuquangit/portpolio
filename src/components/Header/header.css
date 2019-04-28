@@ -1,0 +1,11 @@
+.header-img {
+    text-align: center;
+    color: #fff;
+    background-image: url(../../img/header-bg.JPG);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
