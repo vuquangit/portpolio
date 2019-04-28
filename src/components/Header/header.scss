@@ -21,14 +21,14 @@
 
 .intro-text {
     padding-top: 300px;
-    padding-bottom: 200px;
+    padding-bottom: 30px;
     position: relative;
     z-index: 1;    
 }
 
 .text {
     &__intro {
-        font-size: 50px;   
+        font-size: 50px;           
     }
     &__sub-intro {
         font-size: 40px; 
@@ -36,4 +36,13 @@
     &.italic {
         font-style: italic;
     }
+}
+
+.btn__intro {
+    font-size: 30px;
+    height: 60px;
+    width: 300px;
+    background: rgb(245, 21, 21);
+    position: relative;
+    z-index: 2;
 }

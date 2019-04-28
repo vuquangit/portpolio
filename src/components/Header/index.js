@@ -1,6 +1,7 @@
 import React from "react";
 import "./header.scss";
 import Intro from "./intro";
+import { Button } from "antd";
 
 export default class Header extends React.Component {
   render() {
@@ -17,6 +18,11 @@ export default class Header extends React.Component {
               value="It's nice to meet you"
             />
           </div>
+          <a href="https://www.facebook.com/vuvanquang.wind">
+            <Button type="primary" className="btn__intro">
+              Tell me more
+            </Button>
+          </a>
           <div className="header-foreground" />
         </div>
       </header>
