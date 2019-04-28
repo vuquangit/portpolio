@@ -9,3 +9,31 @@
     width: 100vw;
     height: 100vh;
 }
+
+.header-foreground{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;    
+    left: 0;
+}
+
+.intro-text {
+    padding-top: 300px;
+    padding-bottom: 200px;
+    position: relative;
+    z-index: 1;    
+}
+
+.text {
+    &__intro {
+        font-size: 50px;   
+    }
+    &__sub-intro {
+        font-size: 40px; 
+    }
+    &.italic {
+        font-style: italic;
+    }
+}
