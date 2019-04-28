@@ -5,7 +5,7 @@ export default class Like extends React.Component {
     return (
       <div
         className="fb-like"
-        data-href="https://developers.facebook.com/docs/plugins/"
+        data-href="https://vuquangit.netlify.com/"
         data-width=""
         data-layout="standard"
         data-action="like"

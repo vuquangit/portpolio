@@ -23,7 +23,7 @@ export default class Header extends React.Component {
               Tell me more
             </Button>
           </a>
-          <div className="header-foreground" />
+          {/* <div className="header-foreground" />  */}
         </div>
       </header>
     );
