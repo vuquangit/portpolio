@@ -50,16 +50,34 @@ li {
   text-align: -webkit-match-parent;
 }
 
-.homepage-blogArticles .suggestions .suggestions_item:nth-child(2) {
-  margin: 0 3.125rem;
+// Should use SASS syntax
+// .homepage-blogArticles .suggestions .suggestions_item:nth-child(2) {
+//   margin: 0 3.125rem;
+// }
+.homepage-blogArticles {
+  margin: 32px 0;
+  .suggestions {
+    .suggestions_item {
+      &:nth-child(2) {
+        margin: 0 3.125rem;
+      }
+    }
+  }
 }
 
 .suggestions_img {
-  //display: block;
+  display: flex;
+  justify-content: center;
   //max-width: 350px;
   max-height: 150px;
   //height: auto;
   width: auto;
+  margin: 24px 0;
+
+  img {
+    width: 75px;
+    height: 75px;
+  }
   //object-fit: contain;
 }
 
@@ -69,30 +87,30 @@ li {
 }
 
 .btn {
-    display: inline-block;
-    font-size: .9375rem;
-    font-weight: 600;
-    color: #fff;
-    background: #684cd6;
-    border: 0;
-    border-radius: .25rem;
-    overflow: hidden;
-    transition: all .2s;
-    text-decoration: none;
-    cursor: pointer;
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #fff;
+  background: #684cd6;
+  border: 0;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  transition: all 0.2s;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .btn-md {
-    padding: 0 1.5625rem;
-    font-size: .9375rem;
+  padding: 0 1.5625rem;
+  font-size: 0.9375rem;
 }
 
 .btn-shadow {
-    box-shadow: 0 1px 6px rgba(87,86,105,.3);
+  box-shadow: 0 1px 6px rgba(87, 86, 105, 0.3);
 }
 
 .btn {
-    margin-top: 3.75rem;
+  margin-top: 3.75rem;
 }
 
 // div {

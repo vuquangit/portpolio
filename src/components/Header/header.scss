@@ -1,50 +1,49 @@
 .header-img {
-    text-align: center;
-    color: #fff;
-    background-image: url("https://lh3.googleusercontent.com/7j02T7LL5VgIEBeNuKiluEi2sPKf16F2k5pyNMmbdthvUGgRJlLzn1PVhkdS-r_03TFfOViN9GaQuhVamZthdEbmF0D2S1cYlYixSMSfisrljVCkI9SO52fU93q9YoCXb7x5OFjUGDKTg_Efpwzy591kXxzUAAvreGEOEF9kdBU8tN0mOJmOpDBH2fSqKbnactijOgqCUea8DvhKagWIgsZSVvlQXHIUxfyM7wia4dwwOVFq7WWcTxfrQWYQWJN3zEVyoXn_lAiaQEd61FETJkgjSCS8DruMwXLspqMdfxzcj6uCjlVQKeKT-_ptnQ5RuLjxLSTnYJJq75RvjJvrLgrfeClei-LLM-Y5vtMY2P-kC2gEnznlL80I7j9eN4bLY37539VOjuY-GxIFwlHVXfimkm7mmM_4Kf-sHrHEC7Q02k2B6aABZjnhfsvF3TF3f-Zx9tkjSoI2ukq7YQBqirwPTA6uOUss1Kmhv9Dt8jSKFd-_Ne4lwVOja64rUtNOsQ8qFdehYfGaAMX9jayjxt_pZbh-Ua81bstGYKzWniZwq4eohXh8SmDlQGRWVRT5nhCM_SYjFxwQTnuNQV7VvlqDF8awEPNfEzDBFUTxU9DTIk-z8S9rX_uS2sWyitdVj_xh5Zfbio766v3c4cQcKLgFB0cxBcU_=w1600-h756-no");
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
+  text-align: center;
+  color: #fff;
+  // todo: share public image
+  background-image: url('https://www.wallpaperup.com/uploads/wallpapers/2013/08/20/136635/1a85c1ca186f6500416cf69d07cf6750-1000.jpg');
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
 
-.header-foreground{
-    
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.4);
-    position: fixed;
-    top: 0;    
-    left: 0;   
-    
+.header-foreground {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .intro-text {
-    padding-top: 30vh;
-    padding-bottom: 3vh;
-    position: relative;
-    z-index: 1;    
+  padding-top: 30vh;
+  padding-bottom: 3vh;
+  position: relative;
+  z-index: 1;
 }
 
 .text {
-    &__intro {
-        font-size: 50px;           
-    }
-    &__sub-intro {
-        font-size: 40px; 
-    }
-    &.italic {
-        font-style: italic;
-    }
+  &__intro {
+    font-size: 50px;
+  }
+  &__sub-intro {
+    font-size: 40px;
+  }
+  &.italic {
+    font-style: italic;
+  }
 }
 
 .btn__intro {
-    font-size: 30px;
-    height: 60px;
-    width: 300px;
-    background: rgb(245, 21, 21);
-    position: relative;
-    z-index: 2;
+  font-size: 30px;
+  height: 60px;
+  width: 300px;
+  background: rgb(245, 21, 21);
+  position: relative;
+  z-index: 2;
 }
