@@ -1,22 +1,10 @@
 .heading-dark {
-  // display: inline-block;
   font-size: 3rem;
   font-weight: 500;
   letter-spacing: -0.0625rem;
   color: #00af3a;
   text-align: center;
   text-transform: uppercase;
-
-  // margin: 0;
-  // font-family: Geomanist,sans-serif;
-
-  // margin-top: 0;
-  // font-family: Geomanist,sans-serif;
-  // font-size: 3rem;
-  // font-weight: 300;
-  // letter-spacing: -.0625rem;
-  // text-align: center;
-  // text-transform: uppercase;
 }
 
 .homepage-section_text p {
@@ -32,11 +20,14 @@
   width: 100%;
   max-width: 21.875rem;
   margin-left: 0;
-  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.6);
   border-radius: 0.25rem;
   list-style: none;
   overflow: hidden;
   transition: all 0.2s linear;
+  &:hover {
+    box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
+  }
 }
 
 .suggestions_list {
@@ -50,17 +41,33 @@ li {
   text-align: -webkit-match-parent;
 }
 
-.homepage-blogArticles .suggestions .suggestions_item:nth-child(2) {
-  margin: 0 3.125rem;
+// .homepage-blogArticles .suggestions .suggestions_item:nth-child(2) {
+//   margin: 0 3.125rem;
+// }
+.homepage-blogArticles {
+  margin: 32px 0;
+  .suggestions {
+    .suggestions_item {
+      &:nth-child(2) {
+        //margin: 0 3.125rem; //margin image 2nd
+      }
+    }
+  }
 }
 
 .suggestions_img {
-  //display: block;
+  display: flex;
+  justify-content: center;
   //max-width: 350px;
   max-height: 150px;
   //height: auto;
   width: auto;
-  //object-fit: contain;
+  margin: 24px 0;
+
+  img {
+    width: 75px;
+    height: 75px;
+  }
 }
 
 .suggestions_info {
@@ -95,11 +102,4 @@ li {
     margin-top: 3.75rem;
 }
 
-// div {
-//   display: block;
-// }
 
-// *, :after, :before {
-//     box-sizing: border-box;
-//     outline: none;
-// }
