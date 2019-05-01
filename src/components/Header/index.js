@@ -2,11 +2,13 @@ import React from "react";
 import "./header.scss";
 import Intro from "./intro";
 import { Button } from "antd";
+import imgbg  from '../../img/IMG_2508.JPG'
 
 export default class Header extends React.Component {
   render() {
     return (
-      <header className="header-img">
+      <header class= "header" >
+        <img className="header-img" src={imgbg} alt=""/>
         <div className="container">
           <div className="intro-text">
             <Intro
@@ -23,7 +25,7 @@ export default class Header extends React.Component {
               Tell me more
             </Button>
           </a>
-          {/* <div className="header-foreground" />  */}
+          <div className="header-foreground" />
         </div>
       </header>
     );
