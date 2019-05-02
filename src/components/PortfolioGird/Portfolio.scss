@@ -1,0 +1,15 @@
+.suggestions_item {
+//   width: 100%;
+//   max-width: 21.875rem;
+//   margin-left: 0;
+  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+//   list-style: none;
+//   overflow: hidden;
+//   transition: all 0.2s linear;
+  &:hover {
+    box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.6);
+  }
+  padding: 10px;
+  text-align: center;
+}

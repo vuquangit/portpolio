@@ -3,7 +3,8 @@
     "url": "/",
     "title": "service title 1",
     "description": "service description 1",
-    "logo": "https://bzinc.ca/resources/img/service-334.png"
+    "logo": "https://bzinc.ca/resources/img/service-334.png",
+    "datecreate": "2019-01-02 08:00:00"
   },
   {
     "url": "/",
