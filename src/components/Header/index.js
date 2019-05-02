@@ -7,7 +7,7 @@ import imgbg from "../../img/IMG_2508.JPG";
 export default class Header extends React.Component {
   render() {
     return (
-      <header class="header">
+      <header className="header">
         <img className="header-img" src={imgbg} alt="" />
         <div className="container">
           <div className="intro-text">

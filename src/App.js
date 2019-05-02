@@ -6,6 +6,7 @@ import Like from './components/Facebooks/Like'
 // import Service from  './components/Service'
 import Service2 from './components/Service2'
 import PortfolioGrid from './components/PortfolioGird'
+import AboutPortfolio from './components/About'
 
 function App() {
     return <div>
@@ -14,6 +15,7 @@ function App() {
       {/* <Service /> */}
       <Service2 />
       <PortfolioGrid />>
+      <AboutPortfolio />
       <Like />
     </div>
 }
