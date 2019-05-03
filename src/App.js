@@ -7,6 +7,10 @@ import Like from './components/Facebooks/Like'
 import Service2 from './components/Service2'
 import PortfolioGrid from './components/PortfolioGird'
 import AboutPortfolio from './components/About'
+import Team from './components/Team'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+import PortfolioModals from './components/PortfolioModals'
 
 function App() {
     return <div>
@@ -16,6 +20,10 @@ function App() {
       <Service2 />
       <PortfolioGrid />>
       <AboutPortfolio />
+      <Team />
+      <Contact />
+      <Footer />
+      <PortfolioModals />
       <Like />
     </div>
 }

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Quang Vu Van",
+    "position": "Designer",
+    "avatar": "https://blackrockdigital.github.io/startbootstrap-agency/img/team/1.jpg",
+    "twitter": "",
+    "facebook": "",
+    "linkedin": ""
+  },
+  {
+    "name": "Tue Vu",
+    "position": "Developer",
+    "avatar": "https://blackrockdigital.github.io/startbootstrap-agency/img/team/2.jpg",
+    "twitter": "",
+    "facebook": "",
+    "linkedin": ""
+  },
+  {
+    "name": "Name 3",
+    "position": "Marketing",
+    "avatar": "https://blackrockdigital.github.io/startbootstrap-agency/img/team/3.jpg",
+    "twitter": "",
+    "facebook": "",
+    "linkedin": ""
+  }
+]

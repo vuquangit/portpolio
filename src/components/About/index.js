@@ -35,7 +35,7 @@ export default class AboutPortfolio extends React.Component {
 
                 <li className="timeline-inverted">
                   <div className="timeline-image">
-                    <h4>Be Part f Our Story!</h4>
+                    <h4>Be Part Of Our Story!</h4>
                   </div>
                 </li>
               </ul>

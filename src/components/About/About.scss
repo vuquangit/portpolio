@@ -13,15 +13,20 @@ $primary: #fed136 !default;
 
 // Styling for the timeline section
 .timeline {
+  //Định vị trí tuyệt đối (vị trí bao ngoài), lúc này các thẻ HTML bên trong sẽ coi nó là thẻ cha
+  //Dùng để thiết lập một phần tử sử dụng các thuộc tính position (xem ở dưới) mà không làm ảnh hưởng đến việc hiển thị ban đầu.
   position: relative;
+
   padding: 0;
-  list-style: none;
+  list-style: none; //Không hiển thị image list, đây là dạng mặc định.
 
   &:before {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 40px;
+    //Before dùng để thêm nội dung vào đằng trước thẻ HTML.
+    // Dùng để thiết lập vị trí của một phần tử nhưng nó sẽ luôn nằm trong một phần tử mẹ đang là relative.
+    position: absolute; //Định vị trí tuyệt đối cho thành phần theo thành phần bao ngoài (thành phần định vị trí tương đối position: relative;) hoặc theo cửa sổ trình duyệt.
+    top: 0; // Căn vị trí hiển thị của phần tử theo hướng từ trên xuống dưới. Giá trị càng cao thì phần tử càng thụt xuống dưới.
+    bottom: 0; //Căn vị trí hiển thị của phần tử theo hướng từ dưới lên trên. Giá trị càng cao thì phần tử càng hiển thị lên cao.
+    left: 40px; //Căn vị trí hiển thị từ trái sang phải. Giá trị càng cao thì phần tử sẽ càng thụt về bên phải.
     width: 2px;
     margin-left: -1.5px;
     content: "";
@@ -35,16 +40,34 @@ $primary: #fed136 !default;
     &:after,
     &:before {
       display: table;
-      content: " ";
+      content: "";
     }
     &:after {
       clear: both;
     }
-    .timeline-panel {
+    .timeline-image {
+      position: absolute;
+      z-index: 100;
+      left: 0;
+      width: 80px;
+      height: 80px;
+      margin-left: 0;
+      text-align: center;
+      color: white;
+      border: 5px solid $gray-200;
+      border-radius: 100%;
+      background-color: $primary;
+      h4 {
+        font-size: 10px;
+        line-height: 14px;
+        margin-top: 12px;
+      }
+    }
+    .timeline-panel { //panel in left
       position: relative;
-      float: right;
+      float: right; //Nằm phía bên phải
       width: 100%;
-      padding: 0 20px 0 100px;
+      padding: 0 20px 0 100px; //Cách ảnh 100px, lề 20px
       text-align: left;
       &:before {
         right: auto;
@@ -59,24 +82,7 @@ $primary: #fed136 !default;
         border-left-width: 0;
       }
     }
-    .timeline-image {
-      position: absolute;
-      z-index: 100;
-      left: 0;
-      width: 80px;
-      height: 80px;
-      margin-left: 0;
-      text-align: center;
-      color: white;
-      border: 7px solid $gray-200;
-      border-radius: 100%;
-      background-color: $primary;
-      h4 {
-        font-size: 10px;
-        line-height: 14px;
-        margin-top: 12px;
-      }
-    }
+
     &.timeline-inverted > .timeline-panel {
       float: right;
       padding: 0 20px 0 100px;
@@ -94,6 +100,7 @@ $primary: #fed136 !default;
         border-left-width: 0;
       }
     }
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -104,7 +111,7 @@ $primary: #fed136 !default;
       margin-top: 0;
       color: inherit;
       &.subheading {
-        text-transform: none;
+        text-transform: none; //Trả văn bản về dạng mặc định ban đầu
       }
     }
   }
@@ -124,18 +131,18 @@ $primary: #fed136 !default;
 
     > li {
       min-height: 100px;
-      margin-bottom: 100px;
+      margin-bottom: 50px;
       .timeline-panel {
-        float: left;
-        width: 41%;
-        padding: 0 20px 20px 30px;
+        float: left; //
+        width: 43%;
+        padding: 0 10px 10px 20px; //top | right | bottom | left
         text-align: right;
       }
       .timeline-image {
-        left: 50%;
+        left: 50%; //Căn hình vào giữa
         width: 100px;
         height: 100px;
-        margin-left: -50px;
+        margin-left: -50px; //Dịch 1 nửa width 
         h4 {
           font-size: 13px;
           line-height: 18px;
