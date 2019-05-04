@@ -21,18 +21,8 @@ export default class AboutPortfolio extends React.Component {
             <div className="col-lg-12">
               <ul className="timeline">
                 {mock.map((item, index) => (
-                  <AboutItem
-                    {...item}
-                   
-                    key={index}
-                  />
+                  <AboutItem {...item} key={index} />
                 ))}
-
-                {/* <AboutItem />
-                <AboutItem className="timeline-inverted" />
-                <AboutItem />
-                <AboutItem className="timeline-inverted" /> */}
-
                 <li className="timeline-inverted">
                   <div className="timeline-image">
                     <h4>Be Part Of Our Story!</h4>

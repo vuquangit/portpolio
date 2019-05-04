@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import NavItem from "./NavItem";
 import Brand from "./Brand";
+import "./Nav.scss";
 
 export default class Navigation extends Component {
   state = {
-    navList: ["Service", "Portfolio", "Blog", "About", "Contact"]
+    navList: [
+      { name: "Service", href: "#services" },
+      { name: "Portfolio", href: "#portfolio" },
+      { name: "About", href: "#about" },
+      { name: "Team", href: "#team" },
+      { name: "Contact", href: "#contact" }
+    ]
   };
+
   render() {
     return (
       <div>
@@ -30,7 +38,7 @@ export default class Navigation extends Component {
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav text-uppercase ml-auto">
                 {this.state.navList.map((item, index) => (
-                  <NavItem key={index} text={item} />
+                  <NavItem key={index} {...item} />
                 ))}
               </ul>
             </div>
