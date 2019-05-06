@@ -5,7 +5,6 @@ import "./Nav.scss";
 
 export default class Navigation extends Component {
   state = {
-    //navList: ["Service", "Portfolio", "About", "Team", "Contact"];
     navList: [
       { menu: "Home", id: "" },
       { menu: "Service", id: "Service2" },

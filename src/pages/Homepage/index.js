@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../components/Header";
-import Like from "../../components/Facebooks/Like";
+// import Like from "../../components/Facebooks/Like";
 import Service2 from "../../components/Service2";
 import PortfolioGrid from "../../components/PortfolioGird";
 import AboutPortfolio from "../../components/About";
@@ -13,8 +13,8 @@ import { Switch, Route } from "react-router-dom";
 function Homepage() {
   return (
     <div>
-      <Header />
       <Switch>
+        <Route exact path="/" component={Header} />
         <Route exact path="/Service2" component={Service2} />
         <Route exact path="/PortfolioGrid" component={PortfolioGrid} />
         <Route exact path="/AboutPortfolio" component={AboutPortfolio} />
