@@ -1,31 +1,20 @@
-import React from 'react';
-//import './App.css';
-import Navigation from './components/Navigation'
-import Header from './components/Header'
-import Like from './components/Facebooks/Like'
-// import Service from  './components/Service'
-import Service2 from './components/Service2'
-import PortfolioGrid from './components/PortfolioGird'
-import AboutPortfolio from './components/About'
-import Team from './components/Team'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import PortfolioModals from './components/PortfolioModals'
+import React from "react";
+import Navigation from "./components/Navigation";
+import Homepage from "./pages/Homepage";
+import { Switch, Route } from "react-router-dom";
+import { Page404 } from "./pages/404";
 
 function App() {
-    return <div>
+  return (
+    <div>
       <Navigation />
-      <Header />
-      {/* <Service /> */}
-      <Service2 />
-      <PortfolioGrid />>
-      <AboutPortfolio />
-      <Team />
-      <Contact />
-      <Footer />
-      <PortfolioModals />
-      <Like />
+
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        <Route component={Page404} />
+      </Switch>
     </div>
+  );
 }
 
 export default App;
