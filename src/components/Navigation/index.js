@@ -5,12 +5,14 @@ import "./Nav.scss";
 
 export default class Navigation extends Component {
   state = {
+    //navList: ["Service", "Portfolio", "About", "Team", "Contact"];
     navList: [
-      { name: "Service", href: "#services" },
-      { name: "Portfolio", href: "#portfolio" },
-      { name: "About", href: "#about" },
-      { name: "Team", href: "#team" },
-      { name: "Contact", href: "#contact" }
+      { menu: "Home", id: "" },
+      { menu: "Service", id: "Service2" },
+      { menu: "Portfolio", id: "PortfolioGrid" },
+      { menu: "About", id: "AboutPortfolio" },
+      { menu: "Team", id: "Team" },
+      { menu: "Contact", id: "Contact" }
     ]
   };
 
