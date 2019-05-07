@@ -7,11 +7,11 @@ export default class Navigation extends Component {
   state = {
     navList: [
       { menu: "HOME", id: "" },
-      { menu: "Service", id: "Service2" },
-      { menu: "Portfolio", id: "PortfolioGrid" },
-      { menu: "About", id: "AboutPortfolio" },
-      { menu: "Team", id: "Team" },
-      { menu: "Contact", id: "Contact" }
+      { menu: "Service", id: "service" },
+      { menu: "Portfolio", id: "portfolio" },
+      { menu: "About", id: "about" },
+      { menu: "Team", id: "team" },
+      { menu: "Contact", id: "contact" }
     ]
   };
 

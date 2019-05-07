@@ -15,12 +15,12 @@ function Homepage() {
     <div>
       <Switch>
         <Route exact path="/" component={Header} />
-        <Route exact path="/Service2" component={Service2} />
-        <Route exact path="/PortfolioGrid" component={PortfolioGrid} />
-        <Route exact path="/AboutPortfolio" component={AboutPortfolio} />
-        <Route exact path="/Team" component={Team} />
-        <Route exact path="/Contact" component={Contact} />
-        <Route exact path="/Footer" component={Footer} />
+        <Route exact path="/service" component={Service2} />
+        <Route exact path="/portfolio" component={PortfolioGrid} />
+        <Route exact path="/about" component={AboutPortfolio} />
+        <Route exact path="/team" component={Team} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/footer" component={Footer} />
         {/* <Like /> */}
       </Switch>
     </div>
