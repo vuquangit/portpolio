@@ -11,7 +11,8 @@ export default class Navigation extends Component {
       { menu: "Portfolio", id: "portfolio" },
       { menu: "About", id: "about" },
       { menu: "Team", id: "team" },
-      { menu: "Contact", id: "contact" }
+      { menu: "Contact", id: "contact" },
+      { menu: "Fetch API", id: "fetch-api" }
     ]
   };
 
