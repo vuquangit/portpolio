@@ -9,19 +9,21 @@ import Contact from "../../components/Contact";
 import Footer from "../../components/Footer";
 //import PortfolioModals from "../../components/PortfolioModals";
 import { Switch, Route } from "react-router-dom";
+import { Page404 } from "../404";
 
 function Homepage() {
   return (
     <div>
       <Switch>
         <Route exact path="/" component={Header} />
-        <Route exact path="/service" component={Service2} />
-        <Route exact path="/portfolio" component={PortfolioGrid} />
-        <Route exact path="/about" component={AboutPortfolio} />
-        <Route exact path="/team" component={Team} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/footer" component={Footer} />
+        <Route path="/service" component={Service2} />
+        <Route path="/portfolio" component={PortfolioGrid} />
+        <Route path="/about" component={AboutPortfolio} />
+        <Route path="/team" component={Team} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/footer" component={Footer} />
         {/* <Like /> */}
+        <Route component={Page404} />
       </Switch>
     </div>
   );
