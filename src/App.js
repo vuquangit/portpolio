@@ -10,7 +10,7 @@ function App() {
       <Navigation />
 
       <Switch>
-        <Route exact path="/" component={Homepage} />
+        <Route path="/" component={Homepage} />
         <Route component={Page404} />
       </Switch>
     </div>
