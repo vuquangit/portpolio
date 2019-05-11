@@ -16,7 +16,7 @@ function Homepage() {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={Header} />
+        <Route exact path="/" component={Header} />      
         <Route path="/service" component={Service2} />
         <Route path="/portfolio" component={PortfolioGrid} />
         <Route path="/about" component={AboutPortfolio} />

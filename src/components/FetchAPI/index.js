@@ -14,7 +14,7 @@ export default class FetchAPI extends React.Component {
     return (
       <div className="fetch-api">
         <Link to="/fetch-api" component={FetchAPIHome}>
-          Back
+          Back to Fetch-API
         </Link>
         <Switch>
           <Route exact path="/fetch-api" component={FetchAPIHome} />
@@ -49,7 +49,9 @@ function FetchAPIHome() {
       <ul>
         Fetch
         <li>
-          <Link to="/fetch-api/no-fetch-api">No Fetch</Link>
+          <Link to="/fetch-api/no-fetch-api">
+            No Fetch         
+          </Link>
         </li>
         <li>
           <Link to="/fetch-api/using-fetch-with-a-third-party-api">

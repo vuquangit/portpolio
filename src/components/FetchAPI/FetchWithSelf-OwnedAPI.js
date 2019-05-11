@@ -31,6 +31,7 @@ class FetchWithSelfOwnedAPI extends React.Component {
       <React.Fragment>
         <h1>React Fetch - Blog</h1>
         <hr />
+        {error ? <p>Error: {error}</p>: null}
         {!isLoading ? (
           Object.keys(posts).map(key => <Post key={key} body={posts[key]} />)
         ) : (
