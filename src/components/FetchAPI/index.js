@@ -8,6 +8,7 @@ import FetchWithSelfOwnedAPI from "./FetchWithSelf-OwnedAPI";
 import AxiosThirdPartyAPI from "./AxiosThird-partyAPI";
 import AxiosWithYourOwnAPI from "./AxiosWithYour-OwnAPI";
 import AsyncAndAwait from "./AsyncAndAwait";
+import Exam1 from "./Exam1";
 
 export default class FetchAPI extends React.Component {
   render() {
@@ -35,6 +36,7 @@ export default class FetchAPI extends React.Component {
             path="/fetch-api/using-axios-with-your-own-api"
             component={AxiosWithYourOwnAPI}
           />
+          <Route path="/fetch-api/exam1" component={Exam1} />
           <Route path="/fetch-api/async-and-await" component={AsyncAndAwait} />
           <Route component={Page404} />
         </Switch>
@@ -49,9 +51,7 @@ function FetchAPIHome() {
       <ul>
         Fetch
         <li>
-          <Link to="/fetch-api/no-fetch-api">
-            No Fetch         
-          </Link>
+          <Link to="/fetch-api/no-fetch-api">No Fetch</Link>
         </li>
         <li>
           <Link to="/fetch-api/using-fetch-with-a-third-party-api">
@@ -79,6 +79,15 @@ function FetchAPIHome() {
         </li>
         <li>
           <Link to="/fetch-api/async-and-await">async and await</Link>
+        </li>
+      </ul>
+
+      <ul>
+        {" "}
+        My Project API
+        <li>
+          {" "}
+          <Link to="/fetch-api/exam1">Exam 1</Link>
         </li>
       </ul>
     </div>
