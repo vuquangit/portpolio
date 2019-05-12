@@ -83,10 +83,8 @@ function FetchAPIHome() {
       </ul>
 
       <ul>
-        {" "}
         My Project API
         <li>
-          {" "}
           <Link to="/fetch-api/exam1">Exam 1</Link>
         </li>
       </ul>
