@@ -2,3 +2,5 @@ cd /d D:\Javascript\Project\portpolio
 yarn start
 
 https://github.com/vuquangit/portpolio.git
+
+cd /d D:\Quang\Javascript\portpolio
