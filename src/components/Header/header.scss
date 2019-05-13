@@ -1,68 +1,67 @@
 .header {
-  //width: 100vw;
-  height: 100vh;
   position: relative;
+  //width: 100vw;
+  //height: 100vh;
 
   .header-img {
-    text-align: center;
-    color: #fff;
-    // todo: share public image
-    background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2013/08/20/136635/1a85c1ca186f6500416cf69d07cf6750-1000.jpg");
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
-    background-size: cover;
+    //todo: share public image
+    //background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2013/08/20/136635/1a85c1ca186f6500416cf69d07cf6750-1000.jpg");
+    //background-repeat: no-repeat;
+    //background-attachment: scroll;
+    //background-position: center center;
+    //background-size: cover;
     width: 100%;
     height: 100vh;
-    position: absolute;
+    position: relative;
+    z-index: 0;
   }
 
-  .intro-text {
-    padding-top: 30vh;
-    padding-bottom: 3vh;
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    color: #fff;
-  }
-  
-  .text {
-    &__intro {
-      font-size: 50px;
-    }
-    &__sub-intro {
-      font-size: 40px;
-    }
-    &.italic {
-      font-style: italic;
-    }
-  }
-  
-  .btn__intro {
-    font-size: 30px;
-    height: 60px;
-    width: 300px;
-    background: rgb(98, 189, 231);
-    position: relative;
+  .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 2;
-    margin: 0 auto;
-    display: block;
-    border-radius: 10px;
+
+    .intro-text {
+      padding-top: 30vh;
+      padding-bottom: 3vh;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+    }
+
+    .text {
+      &__intro {
+        font-size: 50px;
+      }
+      &__sub-intro {
+        font-size: 40px;
+      }
+      &.italic {
+        font-style: italic;
+      }
+    }
+
+    .btn__intro {
+      font-size: 30px;
+      height: 60px;
+      width: 300px;
+      background: rgb(0, 100, 146);
+      margin: 0 auto;
+      display: block;
+      border-radius: 10px;
+    }
   }
 
   .header-foreground {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.3);
     position: absolute;
-    margin: 0px ;
+    margin: 0px;
     top: 0px;
     left: 0px;
+    z-index: 1;
   }
 }
-
-
-
-
-
-
