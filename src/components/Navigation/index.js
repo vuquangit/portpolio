@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import NavItem from "./NavItem";
-import Brand from "./Brand";
-import "./Nav.scss";
+//import "./Nav.scss";
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import myLogo from "../../img/MyLogo.jpg";
+import { Link } from "react-router-dom";
 
 export default class Navigation extends Component {
   state = {
@@ -16,35 +18,27 @@ export default class Navigation extends Component {
     ]
   };
 
-  render() {
-    return (
-      <nav
-        className="navbar navbar-expand-lg navbar-dark bg-dark navbar-shrink"
-        id="mainNav"
-      >
-        <div className="container">
-          <Brand value="Chàng Gió" />
-          <button
-            className="navbar-toggler navbar-toggler-right collapsed"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarResponsive"
-            aria-controls="navbarResponsive"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            Menu
-            <i className="fas fa-bars" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarResponsive">
-            <ul className="navbar-nav text-uppercase ml-auto">
-              {this.state.navList.map((item, index) => (
-                <NavItem key={index} {...item} />
-              ))}
-            </ul>
-          </div>
-        </div>
-      </nav>
+  render() {   
+    return (                
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" >
+        <Navbar.Brand>
+          <Link to={`/`} > 
+            <img src={myLogo} width="30" height="30" alt="Chang Gio logo" className="d-inline-block align-top" />          
+          </Link>    
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            {this.state.navList.map((item, index) => (
+                    <NavItem key={index} {...item} />
+                  ))}     
+          </Nav>   
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-light">Search</Button>
+          </Form>      
+        </Navbar.Collapse>         
+      </Navbar>
     );
   }
 }
