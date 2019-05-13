@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import NavItem from "./NavItem";
-//import Brand from "./Brand";
 //import "./Nav.scss";
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import myLogo from "../../img/MyLogo.jpg";
