@@ -26,8 +26,8 @@ export default class Header extends React.Component {
               Chàng Gió Timeline
             </Button>
           </Link>
-          <div className="header-foreground" />
         </div>
+        <div className="header-foreground" />
       </header>
     );
   }

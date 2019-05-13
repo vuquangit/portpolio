@@ -48,25 +48,41 @@ class Exam1 extends React.Component {
     }
   };
   componentDidMount() {
+    //this.getData(); //Auto
+  }
+
+  handleChange = e => {
+    this.setState({
+      search: e.target.value
+    });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
     this.getData();
-  }
-  handleSearch() {
-    //this.getData();
-  }
+    this.setState({
+      dataObject: [],
+      isLoading: true,
+      error: null,
+      //search: "",
+      page: 1
+    });
+  };
+
   render() {
     const { isLoading, error, dataObject } = this.state;
 
     return (
       <React.Fragment>
         <div className="search-object">
-          <label>Search: </label>
           <input
             type="text"
-            placeholder="Enter your text..."
-            //ref={this.search}
+            placeholder="Search..."
             required="required"
+            value={this.state.search}
+            onChange={e => this.handleChange(e)}
           />
-          <button type="submit" onClick={this.handleSearch.bind(this)}>
+          <button type="submit" onClick={e => this.onSubmit(e)}>
             Search
           </button>
         </div>
@@ -98,7 +114,7 @@ class Exam1 extends React.Component {
             </Masonry>
           </InfiniteScroll>
         ) : (
-          <p>Loading...</p>
+          <p>{this.state.search && !isLoading ? "Please wait..." : null}</p>
         )}
       </React.Fragment>
     );
@@ -110,38 +126,36 @@ export default Exam1;
 const Show = ({ item }) => {
   return (
     <div className="item">
-      <div>
-        <img src={item.urls.small} alt={item.alt_description} />
+      <img src={item.urls.small} alt={item.alt_description} />
 
-        <div class="top">
-          <a title="Like photo" class="like_photo" href=" ">
-            <svg
-              class="heart"
-              version="1.1"
-              viewBox="0 0 32 32"
-              width="32"
-              height="32"
-              aria-hidden="false"
-            >
-              <path d="M17.4 29c-.8.8-2 .8-2.8 0l-12.3-12.8c-3.1-3.1-3.1-8.2 0-11.4 3.1-3.1 8.2-3.1 11.3 0l2.4 2.8 2.3-2.8c3.1-3.1 8.2-3.1 11.3 0 3.1 3.1 3.1 8.2 0 11.4l-12.2 12.8z" />
-            </svg>
-            <span>{item.user.total_likes}</span>
-          </a>
+      <div class="top">
+        <a title="Like photo" class="like_photo" href=" ">
+          <svg
+            class="heart"
+            version="1.1"
+            viewBox="0 0 32 32"
+            width="32"
+            height="32"
+            aria-hidden="false"
+          >
+            <path d="M17.4 29c-.8.8-2 .8-2.8 0l-12.3-12.8c-3.1-3.1-3.1-8.2 0-11.4 3.1-3.1 8.2-3.1 11.3 0l2.4 2.8 2.3-2.8c3.1-3.1 8.2-3.1 11.3 0 3.1 3.1 3.1 8.2 0 11.4l-12.2 12.8z" />
+          </svg>
+          <span>{item.user.total_likes}</span>
+        </a>
 
-          <a title="Add to collection" class="add_collection" href=" ">
-            <svg
-              class="_2rdbO"
-              version="1.1"
-              viewBox="0 0 32 32"
-              width="32"
-              height="32"
-              aria-hidden="false"
-            >
-              <path d="M14 3h4v26h-4zM29 14v4h-26v-4z" />
-            </svg>
-            <span>Collect</span>
-          </a>
-        </div>
+        <a title="Add to collection" class="add_collection" href=" ">
+          <svg
+            class="_2rdbO"
+            version="1.1"
+            viewBox="0 0 32 32"
+            width="32"
+            height="32"
+            aria-hidden="false"
+          >
+            <path d="M14 3h4v26h-4zM29 14v4h-26v-4z" />
+          </svg>
+          <span>Collect</span>
+        </a>
       </div>
     </div>
   );

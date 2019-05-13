@@ -1,12 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { Nav } from 'react-bootstrap';
 
 const NavItem = ({ menu, id }) => (
-  <li className="nav-item">
-    <Link to={"/" + id} className="nav-link js-scroll-trigger">
-      {menu}
-    </Link>
-  </li>
+  < Nav.Link >
+    <NavLink 
+      to={"/" + id}   
+      activeClassName= { (id!=="")  ? "active":""  }
+      className="nav-item" > {menu} </NavLink>
+  </Nav.Link>
 );
 
 export default NavItem;
