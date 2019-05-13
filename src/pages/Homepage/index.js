@@ -1,13 +1,11 @@
 import React from "react";
 import Header from "../../components/Header";
-// import Like from "../../components/Facebooks/Like";
 import Service2 from "../../components/Service2";
 import PortfolioGrid from "../../components/PortfolioGird";
 import AboutPortfolio from "../../components/About";
 import Team from "../../components/Team";
 import Contact from "../../components/Contact";
 import Footer from "../../components/Footer";
-//import PortfolioModals from "../../components/PortfolioModals";
 import { Switch, Route } from "react-router-dom";
 import { Page404 } from "../404";
 import FetchAPI from "../../components/FetchAPI";
@@ -25,8 +23,7 @@ function Homepage() {
         <Route path="/contact" component={Contact} />
         <Route path="/footer" component={Footer} />
         <Route path="/fetch-api" component={FetchAPI} />
-        <Route path="/Login" component={Login} />
-        {/* <Like /> */}
+        <Route path="/Login" component={Login} />      
         <Route component={Page404} />
       </Switch>
     </div>
