@@ -128,10 +128,10 @@ const Show = ({ item }) => {
     <div className="item">
       <img src={item.urls.small} alt={item.alt_description} />
 
-      <div class="top">
-        <a title="Like photo" class="like_photo" href=" ">
+      <div className="top">
+        <a title="Like photo" className="like_photo" href=" ">
           <svg
-            class="heart"
+            className="heart"
             version="1.1"
             viewBox="0 0 32 32"
             width="32"
@@ -143,9 +143,9 @@ const Show = ({ item }) => {
           <span>{item.user.total_likes}</span>
         </a>
 
-        <a title="Add to collection" class="add_collection" href=" ">
+        <a title="Add to collection" className="add_collection" href=" ">
           <svg
-            class="_2rdbO"
+            className="_2rdbO"
             version="1.1"
             viewBox="0 0 32 32"
             width="32"
@@ -156,6 +156,43 @@ const Show = ({ item }) => {
           </svg>
           <span>Collect</span>
         </a>
+      </div>
+      <div className="bottom">
+        <div className="user">
+          <a href={item.user.links.html}>
+            <img
+              className="userimg"
+              src={item.user.profile_image.small}
+              srcset=""
+              role="presentation"
+              alt={`Go to ${item.user.username} profile`}
+            />
+          </a>
+          <div className="username">
+            <a href={item.user.links.html}>{item.user.name}</a>
+          </div>
+        </div>
+
+        <div className="download">
+          <a
+            title="Download photo"
+            href={`${item.links.download}?force=true`}
+            rel="nofollow"
+            download
+            target="_blank" //Open new tab
+            className="down-icon"
+          >
+            <svg
+              version="1.1"
+              viewBox="0 0 32 32"
+              width="32"
+              height="32"
+              aria-hidden="false"
+            >
+              <path d="M25.8 15.5l-7.8 7.2v-20.7h-4v20.7l-7.8-7.2-2.7 3 12.5 11.4 12.5-11.4z" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   );
