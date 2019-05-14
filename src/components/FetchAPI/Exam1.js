@@ -4,6 +4,8 @@ import "./FetchAPI.scss";
 //import mockData from "./mock";
 import Masonry from "react-masonry-component";
 import InfiniteScroll from "react-infinite-scroller";
+import Modal from "react-modal";
+
 const accessToken =
   "edaeefaa77fd6a9dfb012f8236bdec0e1d82eb3d38f78aad538e4a5a81ff6c91";
 // const refreshToken =
@@ -20,7 +22,8 @@ class Exam1 extends React.Component {
     isLoading: true,
     error: null,
     search: "rain",
-    page: 1
+    page: 1,
+    modalIsOpen: false //Modal
   };
 
   getData = async () => {
@@ -69,6 +72,26 @@ class Exam1 extends React.Component {
     });
   };
 
+  //Modal
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+    //console.log(this.state.modalIsOpen);
+  };
+
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
+  };
+
+  handleModalCloseRequest = () => {
+    // opportunity to validate something and keep the modal open even if it
+    // requested to be closed
+    this.setState({ modalIsOpen: false });
+  };
+
+  handleSaveClicked = e => {
+    alert("Save button was clicked");
+  };
+
   render() {
     const { isLoading, error, dataObject } = this.state;
 
@@ -86,6 +109,22 @@ class Exam1 extends React.Component {
             Search
           </button>
         </div>
+
+        {/* Modal */}
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={this.openModal.bind(this)}
+        >
+          Open Modal
+        </button>
+        <ModalImage
+          modalIsOpen={this.state.modalIsOpen}
+          closeModal={this.closeModal}
+          handleModalCloseRequest={this.handleModalCloseRequest}
+          handleSaveClicked={this.handleSaveClicked}
+          className="main-modal"
+        />
 
         {error ? <p>Error: {error.message}</p> : null}
         {!isLoading ? (
@@ -109,7 +148,7 @@ class Exam1 extends React.Component {
               imagesLoadedOptions={imagesLoadedOptions} // default {}
             >
               {dataObject.map(item => (
-                <Show key={item.id} item={item} />
+                <Show key={item.id} item={item} openModal={this.openModal} />
               ))}
             </Masonry>
           </InfiniteScroll>
@@ -123,10 +162,14 @@ class Exam1 extends React.Component {
 
 export default Exam1;
 
-const Show = ({ item }) => {
+const Show = ({ item, openModal }) => {
   return (
     <div className="item">
-      <img src={item.urls.small} alt={item.alt_description} />
+      <img
+        src={item.urls.small}
+        alt={item.alt_description}
+        onClick={openModal}
+      />
 
       <div className="top">
         <a title="Like photo" className="like_photo" href=" ">
@@ -195,5 +238,71 @@ const Show = ({ item }) => {
         </div>
       </div>
     </div>
+  );
+};
+
+Modal.setAppElement("#root");
+
+const ModalImage = ({
+  modalIsOpen,
+  closeModal,
+  handleModalCloseRequest,
+  handleSaveClicked
+}) => {
+  console.log(modalIsOpen);
+  return (
+    <Modal
+      className="Modal__Bootstrap modal-dialog"
+      closeTimeoutMS={150}
+      isOpen={modalIsOpen}
+      onRequestClose={handleModalCloseRequest}
+    >
+      <div className="modal-content">
+        <div className="modal-header">
+          <h4 className="modal-title">Modal title</h4>
+          <button
+            type="button"
+            className="close"
+            onClick={handleModalCloseRequest}
+          >
+            <span aria-hidden="true">&times;</span>
+            <span className="sr-only">Close</span>
+          </button>
+        </div>
+        <div className="modal-body">
+          <h4>Really long content...</h4>
+          <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
+            eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
+            Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit
+          </p>
+
+          <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+          </p>
+        </div>
+        <div className="modal-footer">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleModalCloseRequest}
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleSaveClicked}
+          >
+            Save changes
+          </button>
+        </div>
+      </div>
+    </Modal>
   );
 };
