@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NavItem from "./NavItem";
 import "./Nav.scss";
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import myLogo from "../../img/MyLogo.jpg";
 import { Link } from "react-router-dom";
 
@@ -18,27 +18,40 @@ export default class Navigation extends Component {
     ]
   };
 
-  render() {   
-    return (        
-      //sticky="top": Not supported in <= IE11 and other older browsers without a polyfill        
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" id="main-navbar">
+  render() {
+    return (
+      //sticky="top": Not supported in <= IE11 and other older browsers without a polyfill
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        sticky="top"
+        id="main-navbar"
+      >
         <Navbar.Brand>
-          <Link to={`/`} > 
-            <img src={myLogo} width="30" height="30" alt="Chang Gio logo" className="d-inline-block align-top" />          
-          </Link>    
+          <Link to={`/`}>
+            <img
+              src={myLogo}
+              width="30"
+              height="30"
+              alt="Chang Gio logo"
+              className="d-inline-block align-top"
+            />
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav" >
-          <Nav className="mr-auto">
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto" variant="pills">
             {this.state.navList.map((item, index) => (
               <NavItem key={index} {...item} />
-            ))}     
-          </Nav>   
+            ))}
+          </Nav>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-light">Search</Button>
-          </Form>      
-        </Navbar.Collapse>         
+          </Form>
+        </Navbar.Collapse>
       </Navbar>
     );
   }

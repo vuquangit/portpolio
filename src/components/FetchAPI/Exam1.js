@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import "./FetchAPI.scss";
-//import mockData from "./mock";
 import Masonry from "react-masonry-component";
 import InfiniteScroll from "react-infinite-scroller";
 import Modal from "react-modal";
@@ -17,14 +16,21 @@ const masonryOptions = {
 const imagesLoadedOptions = { background: ".my-bg-image-el" };
 
 class Exam1 extends React.Component {
-  state = {
-    dataObject: [],
-    isLoading: true,
-    error: null,
-    search: "rain",
-    page: 1,
-    modalIsOpen: false //Modal
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataObject: [],
+      isLoading: true,
+      error: null,
+      search: "girl",
+      page: 1,
+      modalIsOpen: false, //Modal
+      modalItem: []
+    };
+
+    this.openModal = this.openModal.bind(this);
+    this.getDataModal = this.getDataModal.bind(this);
+  }
 
   getData = async () => {
     try {
@@ -51,7 +57,7 @@ class Exam1 extends React.Component {
     }
   };
   componentDidMount() {
-    //this.getData(); //Auto
+    this.getData(); //Auto
   }
 
   handleChange = e => {
@@ -73,10 +79,24 @@ class Exam1 extends React.Component {
   };
 
   //Modal
-  openModal = () => {
-    this.setState({ modalIsOpen: true });
-    //console.log(this.state.modalIsOpen);
+  openModal = item => {
+    this.setState(
+      {
+        modalIsOpen: true
+      },
+      () => this.getDataModal(item)
+    );
+    //console.log(item);
   };
+
+  getDataModal(item) {
+    console.log(item);
+    let arr = [...this.state.modalItem];
+    let items = item;
+    this.setState({
+      modalItem: [...items] //...item
+    });
+  }
 
   closeModal = () => {
     this.setState({ modalIsOpen: false });
@@ -88,12 +108,8 @@ class Exam1 extends React.Component {
     this.setState({ modalIsOpen: false });
   };
 
-  handleSaveClicked = e => {
-    alert("Save button was clicked");
-  };
-
   render() {
-    const { isLoading, error, dataObject } = this.state;
+    const { isLoading, error, dataObject, modalIsOpen, modalItem } = this.state;
 
     return (
       <React.Fragment>
@@ -118,12 +134,12 @@ class Exam1 extends React.Component {
         >
           Open Modal
         </button>
+
         <ModalImage
-          modalIsOpen={this.state.modalIsOpen}
+          items={modalItem}
+          modalIsOpen={modalIsOpen}
           closeModal={this.closeModal}
           handleModalCloseRequest={this.handleModalCloseRequest}
-          handleSaveClicked={this.handleSaveClicked}
-          className="main-modal"
         />
 
         {error ? <p>Error: {error.message}</p> : null}
@@ -135,7 +151,7 @@ class Exam1 extends React.Component {
             hasMore={this.state.page < 3} //Number page of scroll
             loader={
               <div className="loader" key={0}>
-                Loading ...
+                Loading scroll...
               </div>
             }
           >
@@ -163,12 +179,13 @@ class Exam1 extends React.Component {
 export default Exam1;
 
 const Show = ({ item, openModal }) => {
+  //console.log(item);
   return (
     <div className="item">
       <img
         src={item.urls.small}
         alt={item.alt_description}
-        onClick={openModal}
+        onClick={() => openModal(item)}
       />
 
       <div className="top">
@@ -220,8 +237,8 @@ const Show = ({ item, openModal }) => {
           <a
             title="Download photo"
             href={`${item.links.download}?force=true`}
-            rel="nofollow"
             download
+            rel=" nofollow noopener noreferrer"
             target="_blank" //Open new tab
             className="down-icon"
           >
@@ -244,12 +261,12 @@ const Show = ({ item, openModal }) => {
 Modal.setAppElement("#root");
 
 const ModalImage = ({
+  item,
   modalIsOpen,
   closeModal,
-  handleModalCloseRequest,
-  handleSaveClicked
+  handleModalCloseRequest
 }) => {
-  console.log(modalIsOpen);
+  console.log("Modal item: " + item);
   return (
     <Modal
       className="Modal__Bootstrap modal-dialog"
@@ -259,7 +276,9 @@ const ModalImage = ({
     >
       <div className="modal-content">
         <div className="modal-header">
-          <h4 className="modal-title">Modal title</h4>
+          <h4 className="modal-title">
+            {/* {item.description ? item.description : item.alt_description} */}
+          </h4>
           <button
             type="button"
             className="close"
@@ -271,35 +290,15 @@ const ModalImage = ({
         </div>
         <div className="modal-body">
           <h4>Really long content...</h4>
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
-            eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
-            Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit
-          </p>
-
-          <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-          </p>
+          {/* <img src={item.urls.small} alt={item.alt_description} /> */}
         </div>
         <div className="modal-footer">
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={handleModalCloseRequest}
+            onClick={closeModal}
           >
             Close
-          </button>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={handleSaveClicked}
-          >
-            Save changes
           </button>
         </div>
       </div>
