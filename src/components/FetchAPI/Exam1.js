@@ -17,15 +17,40 @@ const imagesLoadedOptions = { background: ".my-bg-image-el" };
 
 const MyContext = React.createContext();
 class MyProvider extends React.Component {
-  state = {
-    data: []
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: []
+    };
+    this.update = this.update.bind(this);
+  }
+
+  // async update(data) {
+  //   //try {
+  //   console.log(data);
+  //   await new Promise(resolve => {
+  //     this.setState({ data: [...data] }, () => resolve());
+  //   });
+  //   console.log(this.state.data);
+  //   // } catch (e) {
+  //   //   console.log(`Error get data image: ${e}`);
+  //   // }
+  // }
+
+  update(data) {
+    this.setState(() => {
+      return { data };
+    });
+    console.log(data);
+  }
+
   render() {
     return (
       <MyContext.Provider
         value={{
           state: this.state,
-          update: data => this.setState({ ...data })
+          update: this.update
         }}
       >
         {this.props.children}
@@ -66,7 +91,6 @@ class Exam1 extends React.Component {
         dataObject: [...this.state.dataObject, ...response.data.results],
         page: this.state.page + 1
       });
-      //console.log(this.state.page);
     } catch (error) {
       this.setState({ error });
     } finally {
@@ -131,17 +155,7 @@ class Exam1 extends React.Component {
             </button>
           </div>
 
-          {/* Modal */}
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={this.openModal.bind(this)}
-          >
-            Open Modal
-          </button>
-
           <ModalImage
-            items={modalItem}
             modalIsOpen={modalIsOpen}
             closeModal={this.closeModal}
             handleModalCloseRequest={this.handleModalCloseRequest}
@@ -275,13 +289,7 @@ const Show = ({ item, openModal }) => {
 
 Modal.setAppElement("#root");
 
-const ModalImage = ({
-  item,
-  modalIsOpen,
-  closeModal,
-  handleModalCloseRequest
-}) => {
-  console.log("Modal item: " + item);
+const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
   return (
     <MyContext.Consumer>
       {context => (
@@ -308,8 +316,12 @@ const ModalImage = ({
               </button>
             </div>
             <div className="modal-body">
-              <h4>Really long content...</h4>
-              {/* <img src={item.urls.small} alt={item.alt_description} /> */}
+              {context.state.data.urls ? (
+                <img
+                  src={context.state.data.urls.small}
+                  alt={context.state.data.alt_description}
+                />
+              ) : null}
             </div>
             <div className="modal-footer">
               <button
