@@ -16,16 +16,41 @@ const masonryOptions = {
 const imagesLoadedOptions = { background: ".my-bg-image-el" };
 
 const MyContext = React.createContext();
+function updateState(that, data) {
+  return new Promise(resolve => {
+    that.setState(data, () => resolve());
+  });
+}
+
 class MyProvider extends React.Component {
-  state = {
-    data: []
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: []
+    };
+    this.update = this.update.bind(this);
+  }
+
+  async update(data) {
+    //try {
+    console.log(data);
+    await new Promise(resolve => {
+      this.setState({ data: [...data] }, () => resolve());
+    });
+
+    console.log(this.state.data);
+    // } catch (e) {
+    //   console.log(`Error get data image: ${e}`);
+    // }
+  }
+
   render() {
     return (
       <MyContext.Provider
         value={{
           state: this.state,
-          update: data => this.setState({ ...data })
+          update: this.update
         }}
       >
         {this.props.children}
