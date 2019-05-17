@@ -16,12 +16,6 @@ const masonryOptions = {
 const imagesLoadedOptions = { background: ".my-bg-image-el" };
 
 const MyContext = React.createContext();
-function updateState(that, data) {
-  return new Promise(resolve => {
-    that.setState(data, () => resolve());
-  });
-}
-
 class MyProvider extends React.Component {
   constructor(props) {
     super(props);
@@ -97,7 +91,6 @@ class Exam1 extends React.Component {
         dataObject: [...this.state.dataObject, ...response.data.results],
         page: this.state.page + 1
       });
-      //console.log(this.state.page);
     } catch (error) {
       this.setState({ error });
     } finally {
@@ -162,17 +155,7 @@ class Exam1 extends React.Component {
             </button>
           </div>
 
-          {/* Modal */}
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={this.openModal.bind(this)}
-          >
-            Open Modal
-          </button>
-
           <ModalImage
-            items={modalItem}
             modalIsOpen={modalIsOpen}
             closeModal={this.closeModal}
             handleModalCloseRequest={this.handleModalCloseRequest}
@@ -306,12 +289,7 @@ const Show = ({ item, openModal }) => {
 
 Modal.setAppElement("#root");
 
-const ModalImage = ({
-  item,
-  modalIsOpen,
-  closeModal,
-  handleModalCloseRequest
-}) => {
+const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
   return (
     <MyContext.Consumer>
       {context => (
@@ -338,12 +316,12 @@ const ModalImage = ({
               </button>
             </div>
             <div className="modal-body">
-              <h4>Really long content...</h4>
-              <img
-                src="https://images.unsplash.com/photo-1527706005773-ae5d75e90c0e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcxMTg2fQ"
-                alt={context.state.data.alt_description}
-              />
-              <p>{context.state.data.description}</p>
+              {context.state.data.urls ? (
+                <img
+                  src={context.state.data.urls.small}
+                  alt={context.state.data.alt_description}
+                />
+              ) : null}
             </div>
             <div className="modal-footer">
               <button
