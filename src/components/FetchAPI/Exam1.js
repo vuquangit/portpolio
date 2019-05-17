@@ -32,17 +32,23 @@ class MyProvider extends React.Component {
     this.update = this.update.bind(this);
   }
 
-  async update(data) {
-    //try {
-    console.log(data);
-    await new Promise(resolve => {
-      this.setState({ data: [...data] }, () => resolve());
-    });
+  // async update(data) {
+  //   //try {
+  //   console.log(data);
+  //   await new Promise(resolve => {
+  //     this.setState({ data: [...data] }, () => resolve());
+  //   });
+  //   console.log(this.state.data);
+  //   // } catch (e) {
+  //   //   console.log(`Error get data image: ${e}`);
+  //   // }
+  // }
 
-    console.log(this.state.data);
-    // } catch (e) {
-    //   console.log(`Error get data image: ${e}`);
-    // }
+  update(data) {
+    this.setState(() => {
+      return { data };
+    });
+    console.log(data);
   }
 
   render() {
@@ -306,7 +312,6 @@ const ModalImage = ({
   closeModal,
   handleModalCloseRequest
 }) => {
-  console.log("Modal item: " + item);
   return (
     <MyContext.Consumer>
       {context => (
@@ -334,7 +339,11 @@ const ModalImage = ({
             </div>
             <div className="modal-body">
               <h4>Really long content...</h4>
-              {/* <img src={item.urls.small} alt={item.alt_description} /> */}
+              <img
+                src="https://images.unsplash.com/photo-1527706005773-ae5d75e90c0e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcxMTg2fQ"
+                alt={context.state.data.alt_description}
+              />
+              <p>{context.state.data.description}</p>
             </div>
             <div className="modal-footer">
               <button
