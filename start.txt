@@ -1,6 +1,6 @@
-cd /d D:\Javascript\Project\portpolio
+cd /d D:\Javascript\Project\portfolio
 yarn start
 
 https://github.com/vuquangit/portpolio.git
 
-cd /d D:\Quang\Javascript\portpolio
+cd /d D:\Quang\Javascript\portfolio
