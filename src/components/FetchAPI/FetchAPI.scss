@@ -119,13 +119,6 @@
 //Modal
 //.modal-image {
 .Su_hz {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999999999;
-
   pointer-events: none;
   cursor: default;
   min-height: 100%;
@@ -142,6 +135,7 @@
   bottom: 0;
   //background-color: gray;
   z-index: 999999;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 @media (max-width: 1399px) and (min-width: 768px) {
@@ -150,13 +144,18 @@
   }
 }
 
-//Header
+//Button Close modal
 ._3aAtM {
   top: 0;
   left: 0;
   margin-top: 8px;
   margin-left: 8px;
   fill: #fff;
+}
+@media (min-width: 768px) {
+  ._3aAtM {
+    position: fixed;
+  }
 }
 
 ._1PdBr,

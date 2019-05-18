@@ -24,6 +24,7 @@ class MyProvider extends React.Component {
       data: []
     };
     this.update = this.update.bind(this);
+    this.clearItemData = this.clearItemData.bind(this);
   }
 
   // async update(data) {
@@ -45,12 +46,17 @@ class MyProvider extends React.Component {
     console.log(data);
   }
 
+  clearItemData() {
+    this.setState({ data: [] });
+  }
+
   render() {
     return (
       <MyContext.Provider
         value={{
           state: this.state,
-          update: this.update
+          update: this.update,
+          clearItemData: this.clearItemData
         }}
       >
         {this.props.children}
@@ -66,7 +72,7 @@ class Exam1 extends React.Component {
       dataObject: [],
       isLoading: true,
       error: null,
-      search: "girl",
+      search: "viet nam",
       page: 1,
       modalIsOpen: false //Modal
     };
@@ -114,7 +120,6 @@ class Exam1 extends React.Component {
       dataObject: [],
       isLoading: true,
       error: null,
-      //search: "",
       page: 1
     });
   };
@@ -165,8 +170,8 @@ class Exam1 extends React.Component {
           {!isLoading ? (
             <InfiniteScroll
               pageStart={this.state.page}
-              //loadMore={this.getData}
-              loadMore={() => true} // Tắt load auto scroll
+              loadMore={this.getData} // Enable Scroll
+              // loadMore={() => true} // Tắt load auto scroll
               hasMore={this.state.page < 3} //Number page of scroll
               loader={
                 <div className="loader" key={0}>
@@ -183,7 +188,11 @@ class Exam1 extends React.Component {
                 imagesLoadedOptions={imagesLoadedOptions} // default {}
               >
                 {dataObject.map(item => (
-                  <Show key={item.id} item={item} openModal={this.openModal} />
+                  <ItemImage
+                    key={item.id}
+                    item={item}
+                    openModal={this.openModal}
+                  />
                 ))}
               </Masonry>
             </InfiniteScroll>
@@ -198,8 +207,7 @@ class Exam1 extends React.Component {
 
 export default Exam1;
 
-const Show = ({ item, openModal }) => {
-  //console.log(item);
+const ItemImage = ({ item, openModal }) => {
   return (
     <MyContext.Consumer>
       {context => (
@@ -249,7 +257,7 @@ const Show = ({ item, openModal }) => {
                   <img
                     className="userimg"
                     src={item.user.profile_image.small}
-                    srcset=""
+                    //srcset=" "
                     role="presentation"
                     alt={`Go to ${item.user.username} profile`}
                   />
@@ -302,7 +310,13 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
             overlayClassName="Overlay"
           >
             <div className="_3aAtM">
-              <button className="_1NHYN DWLeW Ddtb4" onClick={closeModal}>
+              <button
+                className="_1NHYN DWLeW Ddtb4"
+                onClick={() => {
+                  closeModal();
+                  context.clearItemData();
+                }}
+              >
                 <svg
                   className="_3p8U1"
                   version="1.1"
@@ -377,7 +391,10 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                             <a
                               title="Like photo"
                               className="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _1EJJ- NDx0k _2Xklx"
-                              href="/photos/GBgp6Iy16lc?modal=%7B%22tag%22%3A%22Login%22%2C%22value%22%3A%7B%22tag%22%3A%22Like%22%2C%22value%22%3A%7B%22photoId%22%3A%22GBgp6Iy16lc%22%2C%22userId%22%3A%22qspK_27Okek%22%7D%7D%7D"
+                              href=" "
+                              onClick={() => {
+                                alert("Liked this photo");
+                              }}
                             >
                               <svg
                                 className="BWSrD"
@@ -400,7 +417,10 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                             <a
                               title="Add to collection"
                               className="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _3dBbn NDx0k _2Xklx"
-                              href="/photos/GBgp6Iy16lc?modal=%7B%22tag%22%3A%22Login%22%2C%22value%22%3A%7B%22tag%22%3A%22AddToCollection%22%2C%22value%22%3A%7B%22photoId%22%3A%22GBgp6Iy16lc%22%2C%22userId%22%3A%22qspK_27Okek%22%7D%7D%7D"
+                              href=" "
+                              onClick={() => {
+                                alert("Added your collection");
+                              }}
                             >
                               <svg
                                 className="_2rdbO"
@@ -418,10 +438,16 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                           <div className="_13Q- _27vvN _2iWc-">
                             <a
                               title="Download photo"
-                              href="https://unsplash.com/photos/GBgp6Iy16lc/download?force=true"
+                              href={`${
+                                context.state.data.links
+                                  ? context.state.data.links.download
+                                  : null
+                              }?force=true`}
                               rel="nofollow"
                               download=""
-                              /*target="_blank"*/ className="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _1Tfeo _1AA_u TPbmh _2Xklx"
+                              /*target="_blank"*/
+
+                              className="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _1Tfeo _1AA_u TPbmh _2Xklx"
                             >
                               <svg
                                 className="Apljk _11dQc _1Jd5C"
@@ -443,13 +469,23 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                       <div
                         className="_2yFK- IEpfq" /* style="padding-bottom: 150%;"*/
                       >
-                        <img
+                        {/* <img
                           sizes="(max-width: 767px) 100vw, (max-width: 366px) 334px, (max-height: 676px) 334px, (min-aspect-ratio: 3456/5184) calc((calc(100vh - 175px)) * 0.666667), calc(100vw - 32px)"
                           srcset="https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80 334w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80 634w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=668&amp;q=80 668w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80 934w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1234&amp;q=80 1234w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1268&amp;q=80 1268w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1534&amp;q=80 1534w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1834&amp;q=80 1834w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1868&amp;q=80 1868w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2134&amp;q=80 2134w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2434&amp;q=80 2434w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2468&amp;q=80 2468w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2734&amp;q=80 2734w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3034&amp;q=80 3034w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3068&amp;q=80 3068w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3334&amp;q=80 3334w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3456&amp;q=80 3456w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3456&amp;q=80 3456w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3456&amp;q=80 3456w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3456&amp;q=80 3456w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3456&amp;q=80 3456w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3456&amp;q=80 3456w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3456&amp;q=80 3456w, https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=3456&amp;q=80 3456w"
                           src="https://images.unsplash.com/photo-1496840220025-4cbde0b9df65?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
                           alt="woman carrying backpack while sitting cross legs on hallway in front of people walking"
                           className="_2zEKz"
-                        />
+                        /> */}
+
+                        {context.state.data.urls ? (
+                          <img
+                            sizes="(max-width: 767px) 100vw, (max-width: 366px) 334px, (max-height: 676px) 334px, (min-aspect-ratio: 3456/5184) calc((calc(100vh - 175px)) * 0.666667), calc(100vw - 32px)"
+                            //srcset=""
+                            src={context.state.data.urls.full}
+                            alt={context.state.data.alt_description}
+                            className="_2zEKz"
+                          />
+                        ) : null}
                       </div>
                     </div>
                     <div className="_2QvSN">
@@ -477,7 +513,7 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                                 <img
                                   sizes="(max-width: 767px) 100vw, (max-width: 366px) 334px, (max-height: 676px) 334px, (min-aspect-ratio: 3456/5184) calc((calc(100vh - 175px)) * 0.666667), calc(100vw - 32px)"
                                   //srcset=""
-                                  src={context.state.data.urls.full}
+                                  src={context.state.data.urls.small}
                                   alt={context.state.data.alt_description}
                                   className="_2zEKz"
                                 />
