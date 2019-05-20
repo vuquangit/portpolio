@@ -3,7 +3,7 @@ import { MyContext } from "./MyContext";
 
 class ItemImage extends React.Component {
   render() {
-    const { item, openModal } = this.props;
+    const { item } = this.props;
     return (
       <MyContext.Consumer>
         {context => (
@@ -13,8 +13,7 @@ class ItemImage extends React.Component {
                 src={item.urls.small}
                 alt={item.alt_description}
                 onClick={() => {
-                  openModal();
-                  context.update(item);
+                  context.openModalImage(item);
                 }}
               />
 

@@ -5,25 +5,22 @@ import { MyContext } from "./MyContext";
 
 Modal.setAppElement("#root");
 
-const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
+const ModalImage = () => {
     return (
         <MyContext.Consumer>
             {context => (
                 <Modal
                     className="modal-image"
                     closeTimeoutMS={150}
-                    isOpen={modalIsOpen}
-                    onRequestClose={handleModalCloseRequest}
+                    isOpen={context.state.modalIsOpen}
+                    onRequestClose={context.state.handleModalCloseRequest}
                     overlayClassName="OverlayModal"
                 >
                     <div>
                         <div className="modal-close">
                             <button
                                 className="btn-close"
-                                onClick={() => {
-                                    closeModal();
-                                    context.clearItemData();
-                                }}
+                                onClick={context.closeModalImage}
                             >
                                 <svg
                                     className="sgv-close"
@@ -51,18 +48,18 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                                                             <div
                                                                 className="ODWzM" /*style="width: 32px; height: 32px;"*/
                                                             >
-                                                                {context.state.data.user ? (
-                                                                    <a href={context.state.data.user.links.html}>
+                                                                {context.state.dataModal.user ? (
+                                                                    <a href={context.state.dataModal.user.links.html}>
                                                                         <img
                                                                             className="_1FdcY"
                                                                             src={
-                                                                                context.state.data.user.profile_image
+                                                                                context.state.dataModal.user.profile_image
                                                                                     .small
                                                                             }
                                                                             //srcset=""
                                                                             role="presentation"
                                                                             alt={`Go to ${
-                                                                                context.state.data.user.name
+                                                                                context.state.dataModal.user.name
                                                                                 }'s profile`}
                                                                         />
                                                                     </a>
@@ -72,19 +69,19 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                                                     </div>
                                                     <div className="_80uCh">
                                                         <div className="_2tX2R">
-                                                            {context.state.data.user ? (
+                                                            {context.state.dataModal.user ? (
                                                                 <div>
                                                                     <a
                                                                         className="_3XzpS _1ByhS _4kjHg _1O9Y0 _3l__V _1CBrG xLon9"
-                                                                        href={context.state.data.user.links.html}
+                                                                        href={context.state.dataModal.user.links.html}
                                                                     >
-                                                                        {context.state.data.user.name}
+                                                                        {context.state.dataModal.user.name}
                                                                     </a>
                                                                     <a
                                                                         className="_3l__V _1CBrG vTCGl _1ByhS _4kjHg"
-                                                                        href={context.state.data.user.links.html}
+                                                                        href={context.state.dataModal.user.links.html}
                                                                     >
-                                                                        @{context.state.data.user.username}
+                                                                        @{context.state.dataModal.user.username}
                                                                     </a>
                                                                 </div>
                                                             ) : null}
@@ -113,8 +110,8 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                                                             <path d="M17.4 29c-.8.8-2 .8-2.8 0l-12.3-12.8c-3.1-3.1-3.1-8.2 0-11.4 3.1-3.1 8.2-3.1 11.3 0l2.4 2.8 2.3-2.8c3.1-3.1 8.2-3.1 11.3 0 3.1 3.1 3.1 8.2 0 11.4l-12.2 12.8z" />
                                                         </svg>
                                                         <span className="_2ER2Y">
-                                                            {context.state.data.user
-                                                                ? context.state.data.user.total_likes
+                                                            {context.state.dataModal.user
+                                                                ? context.state.dataModal.user.total_likes
                                                                 : null}
                                                         </span>
                                                     </a>
@@ -145,8 +142,8 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                                                     <a
                                                         title="Download photo"
                                                         href={`${
-                                                            context.state.data.links
-                                                                ? context.state.data.links.download
+                                                            context.state.dataModal.links
+                                                                ? context.state.dataModal.links.download
                                                                 : null
                                                             }?force=true`}
                                                         rel="nofollow"
@@ -183,12 +180,12 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                           className="_2zEKz"
                         /> */}
 
-                                            {context.state.data.urls ? (
+                                            {context.state.dataModal.urls ? (
                                                 <img
                                                     sizes="(max-width: 767px) 100vw, (max-width: 366px) 334px, (max-height: 676px) 334px, (min-aspect-ratio: 3456/5184) calc((calc(100vh - 175px)) * 0.666667), calc(100vw - 32px)"
                                                     //srcset=""
-                                                    src={context.state.data.urls.full}
-                                                    alt={context.state.data.alt_description}
+                                                    src={context.state.dataModal.urls.full}
+                                                    alt={context.state.dataModal.alt_description}
                                                     className="_2zEKz"
                                                 />
                                             ) : null}
@@ -215,12 +212,12 @@ const ModalImage = ({ modalIsOpen, closeModal, handleModalCloseRequest }) => {
                                                     <div
                                                         className="_2yFK- IEpfq" /*style="padding-bottom: 150%;"*/
                                                     >
-                                                        {context.state.data.urls ? (
+                                                        {context.state.dataModal.urls ? (
                                                             <img
                                                                 sizes="(max-width: 767px) 100vw, (max-width: 366px) 334px, (max-height: 676px) 334px, (min-aspect-ratio: 3456/5184) calc((calc(100vh - 175px)) * 0.666667), calc(100vw - 32px)"
                                                                 //srcset=""
-                                                                src={context.state.data.urls.small}
-                                                                alt={context.state.data.alt_description}
+                                                                src={context.state.dataModal.urls.small}
+                                                                alt={context.state.dataModal.alt_description}
                                                                 className="_2zEKz"
                                                             />
                                                         ) : null}

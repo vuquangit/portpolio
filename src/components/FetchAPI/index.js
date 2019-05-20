@@ -9,13 +9,15 @@ export default class FetchAPI extends React.Component {
   render() {
     return (
       <div className="fetch-api">
-        <Link to="/fetch-api" component={FetchAPIHome}>
+        <Link to={`${BASE_URL}`} component={FetchAPIHome}>
           Back to Fetch-API
         </Link>
         <Switch>
+          <Route exact path={`${BASE_URL}`} component={FetchAPIHome} />
           {ROUTE.map(item => (
             <Route
-              path={`${BASE_URL}/${item.path}`}
+              key={item.id}
+              path={`${BASE_URL}${item.path}`}
               component={item.component}
             />
           ))}
