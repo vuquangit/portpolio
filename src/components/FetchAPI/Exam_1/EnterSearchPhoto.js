@@ -1,22 +1,34 @@
 import React from "react";
 import { MyContext } from "./MyContext";
+import { Input } from "antd";
 
 export default class EnterSearchPhoto extends React.Component {
   render() {
     return (
       <MyContext.Consumer>
         {context => (
-          <div className="search-object">
-            <input
+          <div className="enter-search">
+            <Input.Search
+              placeholder="input search text"
+              enterButton="Search"
+              size="large"
+              onSearch={value => context.onSubmitSearchPhoto(value)}
+            />
+            {/* <input
               type="text"
               placeholder="Search..."
               required="required"
               value={context.state.search}
               onChange={e => context.handleChangeSearchPhoto(e)}
             />
-            <button type="submit" onClick={e => context.onSubmitSearchPhoto(e)}>
+
+            <Button
+              type="primary"
+              icon="search"
+              onClick={e => context.onSubmitSearchPhoto(e)}
+            >
               Search
-            </button>
+            </Button> */}
           </div>
         )}
       </MyContext.Consumer>

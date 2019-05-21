@@ -13,7 +13,7 @@ class MyProvider extends React.Component {
       dataSearchPhoto: [],
       isLoading: true,
       error: null,
-      search: "cat",
+      search: null,
       page: 1,
 
       modalIsOpen: false, //Modal
@@ -91,8 +91,10 @@ class MyProvider extends React.Component {
     });
   };
 
-  onSubmitSearchPhoto = e => {
-    e.preventDefault();
+  onSubmitSearchPhoto = value => {
+    this.setState({
+      search: value
+    });
     this.GetDataSearchPhoto();
     this.setState({
       dataSearchPhoto: [],
@@ -110,7 +112,6 @@ class MyProvider extends React.Component {
   closeModalImage = () => {
     this.setState({ modalIsOpen: false, dataModal: [] });
   };
-
   handleModalCloseRequest = () => {
     // opportunity to validate something and keep the modal open even if it
     // requested to be closed
