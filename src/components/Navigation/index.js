@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NavItem from "./NavItem";
 import "./Nav.scss";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, FormControl, Button } from "react-bootstrap";
 import myLogo from "../../img/MyLogo.jpg";
 import { Link } from "react-router-dom";
 
@@ -20,15 +20,7 @@ export default class Navigation extends Component {
 
   render() {
     return (
-      //sticky="top": Not supported in <= IE11 and other older browsers without a polyfill
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        bg="dark"
-        variant="dark"
-        sticky="top"
-        id="main-navbar"
-      >
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand>
           <Link to={`/`}>
             <img
@@ -42,15 +34,15 @@ export default class Navigation extends Component {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto" variant="pills">
+          <Nav className="mr-auto">
             {this.state.navList.map((item, index) => (
               <NavItem key={index} {...item} />
             ))}
           </Nav>
-          <Form inline>
+          <Nav>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-light">Search</Button>
-          </Form>
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
     );
