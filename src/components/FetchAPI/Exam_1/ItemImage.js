@@ -1,5 +1,7 @@
 import React from "react";
 import { MyContext } from "./MyContext";
+//import UserPhoto from "./UserPhoto";
+import { Link } from "react-router-dom";
 
 class ItemImage extends React.Component {
   render() {
@@ -51,8 +53,8 @@ class ItemImage extends React.Component {
                 </a>
               </div>
               <div className="bottom">
-                <div className="user">
-                  <a href={item.user.links.html}>
+                <Link to={`/fetch-api/exam1/${item.user.username}`}>
+                  <div className="user">
                     <img
                       className="userimg"
                       src={item.user.profile_image.small}
@@ -60,11 +62,10 @@ class ItemImage extends React.Component {
                       role="presentation"
                       alt={`Go to ${item.user.username} profile`}
                     />
-                  </a>
-                  <div className="username">
-                    <a href={item.user.links.html}>{item.user.name}</a>
+
+                    <div className="username">{item.user.name}</div>
                   </div>
-                </div>
+                </Link>
 
                 <div className="download">
                   <a

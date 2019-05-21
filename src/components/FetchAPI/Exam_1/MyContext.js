@@ -1,5 +1,4 @@
 import React from "react";
-//import { GetDataSearching } from "./GetDataSearching";
 import axios from "axios";
 const accessToken =
   "edaeefaa77fd6a9dfb012f8236bdec0e1d82eb3d38f78aad538e4a5a81ff6c91";
@@ -19,7 +18,7 @@ class MyProvider extends React.Component {
       modalIsOpen: false, //Modal
       dataModal: [],
 
-      userPhoto: null,
+      username: null,
       pageUserPhoto: 1
     };
 
@@ -28,6 +27,7 @@ class MyProvider extends React.Component {
     this.onSubmitSearchPhoto = this.onSubmitSearchPhoto.bind(this);
     this.closeModalImage = this.closeModalImage.bind(this);
     this.handleModalCloseRequest = this.handleModalCloseRequest.bind(this);
+    this.GetDataUserPhoto = this.GetDataUserPhoto.bind(this);
   }
 
   GetDataSearchPhoto = async () => {
@@ -58,26 +58,26 @@ class MyProvider extends React.Component {
     }
   };
 
-  GetDataUserPhoto = async () => {
+  GetDataUserPhoto = async username => {
     try {
-      const { userPhoto, pageUserPhoto } = this.state;
+      const { pageUserPhoto } = this.state;
       const response = await axios.get(
-        `https://api.unsplash.com/users/${userPhoto}/photos?page=${pageUserPhoto}&per_page=100`,
+        `https://api.unsplash.com/users/${username}/photos?page=${pageUserPhoto}&per_page=20`,
+        //`https://api.unsplash.com/users/leyameera/photos?page=1&per_page=20`,
         {
           headers: {
             "Access-Control-Allow-Origin": " * ",
-            Authorization: `Bearer ${accessToken}`
+            Authorization: `Bearer edaeefaa77fd6a9dfb012f8236bdec0e1d82eb3d38f78aad538e4a5a81ff6c91`
           }
         }
       );
-
+      //console.log(response);
       this.setState({
-        dataSearchPhoto: [
-          ...this.state.dataSearchPhoto,
-          ...response.data.results
-        ],
+        dataSearchPhoto: [...this.state.dataSearchPhoto, ...response.data],
         page: this.state.page + 1
       });
+
+      console.log("data", this.state.dataSearchPhoto);
     } catch (error) {
       this.setState({ error });
     } finally {
@@ -91,10 +91,7 @@ class MyProvider extends React.Component {
     });
   };
 
-  onSubmitSearchPhoto = value => {
-    this.setState({
-      search: value
-    });
+  onSubmitSearchPhoto = () => {
     this.GetDataSearchPhoto();
     this.setState({
       dataSearchPhoto: [],
@@ -127,7 +124,8 @@ class MyProvider extends React.Component {
           handleChangeSearchPhoto: this.handleChangeSearchPhoto,
           onSubmitSearchPhoto: this.onSubmitSearchPhoto,
           closeModalImage: this.closeModalImage,
-          handleModalCloseRequest: this.handleModalCloseRequest
+          handleModalCloseRequest: this.handleModalCloseRequest,
+          GetDataUserPhoto: this.GetDataUserPhoto
         }}
       >
         {this.props.children}
