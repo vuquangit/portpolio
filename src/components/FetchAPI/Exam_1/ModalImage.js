@@ -2,6 +2,7 @@ import React from "react";
 import "../FetchAPI.scss";
 import Modal from "react-modal";
 import { MyContext } from "./MyContext";
+import { Link } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
@@ -49,7 +50,7 @@ const ModalImage = () => {
                                                                 className="ODWzM" /*style="width: 32px; height: 32px;"*/
                                                             >
                                                                 {context.state.dataModal.user ? (
-                                                                    <a href={context.state.dataModal.user.links.html}>
+                                                                    <Link to={`/fetch-api/exam1/${context.state.dataModal.user.username}`}>
                                                                         <img
                                                                             className="_1FdcY"
                                                                             src={
@@ -62,7 +63,7 @@ const ModalImage = () => {
                                                                                 context.state.dataModal.user.name
                                                                                 }'s profile`}
                                                                         />
-                                                                    </a>
+                                                                    </Link>
                                                                 ) : null}
                                                             </div>
                                                         </div>
@@ -71,18 +72,16 @@ const ModalImage = () => {
                                                         <div className="_2tX2R">
                                                             {context.state.dataModal.user ? (
                                                                 <div>
-                                                                    <a
-                                                                        className="_3XzpS _1ByhS _4kjHg _1O9Y0 _3l__V _1CBrG xLon9"
-                                                                        href={context.state.dataModal.user.links.html}
+                                                                    <Link to={`/fetch-api/exam1/${context.state.dataModal.user.username}`}
+                                                                        className="_3XzpS _1ByhS _4kjHg _1O9Y0 _3l__V _1CBrG xLon9"                                                                       
                                                                     >
                                                                         {context.state.dataModal.user.name}
-                                                                    </a>
-                                                                    <a
-                                                                        className="_3l__V _1CBrG vTCGl _1ByhS _4kjHg"
-                                                                        href={context.state.dataModal.user.links.html}
+                                                                    </Link>
+                                                                    <Link to={`/fetch-api/exam1/${context.state.dataModal.user.username}`}
+                                                                        className="_3l__V _1CBrG vTCGl _1ByhS _4kjHg"                                                                      
                                                                     >
                                                                         @{context.state.dataModal.user.username}
-                                                                    </a>
+                                                                    </Link>
                                                                 </div>
                                                             ) : null}
                                                         </div>

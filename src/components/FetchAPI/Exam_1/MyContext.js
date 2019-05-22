@@ -35,7 +35,6 @@ class MyProvider extends React.Component {
       const { page, search } = this.state;
       const response = await axios.get(
         `https://api.unsplash.com/search/photos?page=${page}&query=${search}&per_page=1000`,
-        // `https://api.unsplash.com/users/${search}/photos?page=${page}&per_page=100`,
         {
           headers: {
             "Access-Control-Allow-Origin": " * ",
@@ -63,7 +62,6 @@ class MyProvider extends React.Component {
       const { pageUserPhoto } = this.state;
       const response = await axios.get(
         `https://api.unsplash.com/users/${username}/photos?page=${pageUserPhoto}&per_page=20`,
-        //`https://api.unsplash.com/users/leyameera/photos?page=1&per_page=20`,
         {
           headers: {
             "Access-Control-Allow-Origin": " * ",
