@@ -9,7 +9,7 @@ const masonryOptions = {
 
 const imagesLoadedOptions = { background: ".my-bg-image-el" };
 
-class Error extends React.Component {
+class GalleryImage extends React.Component {
   render() {
     return (
       <MyContext.Consumer>
@@ -54,4 +54,4 @@ class Error extends React.Component {
   }
 }
 
-export default Error;
+export default GalleryImage;

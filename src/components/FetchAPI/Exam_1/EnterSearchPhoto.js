@@ -12,7 +12,8 @@ export default class EnterSearchPhoto extends React.Component {
               placeholder="input search text"
               enterButton="Search"
               size="large"
-              onSearch={value => context.onSubmitSearchPhoto(value)}
+              onChange={value => context.handleChangeSearchPhoto(value)}
+              onSearch={context.onSubmitSearchPhoto}
             />
             {/* <input
               type="text"
