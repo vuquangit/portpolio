@@ -23,7 +23,7 @@ export default class Header extends React.Component {
           </div>
           <Link to="/Login">
             <Button type="primary" className="btn__intro">
-              Chàng Gió Timeline
+              Chàng Gió
             </Button>
           </Link>
         </div>
